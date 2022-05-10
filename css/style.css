@@ -413,3 +413,9 @@ body{
 .formulario-tarjeta .btn-enviar:hover{
     background: #1850b1;
 }
+
+
+img.imgAmex{
+    max-height: 38px;
+
+}

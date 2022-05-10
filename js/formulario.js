@@ -7,12 +7,40 @@ const selectMes = document.querySelector('#selectMes');
 const inputNumero = document.querySelector('#inputNumero');
 const nroTC = document.querySelector('.numero');
 const logoMarca = document.querySelector('#logoMarca');
+const nombreTC = document.querySelector('.nombre');
+const inputNombre = document.querySelector('#inputNombre');
+const firma = document.querySelector('.nombreFirma');
+const mes = document.querySelector('#mes');
+const inputMes = document.querySelector('#selectMes');
+const year = document.querySelector('#year');
+const inputYear = document.querySelector('#selectYear')
+const cvv = document.querySelector('.cvv');
+const inputCVV = document.querySelector('#inputCVV')
 
-/*Roto la tarj2eta*/
+/*Roto la tarjeta*/
 tarjeta.addEventListener('click', ()=>{
     tarjeta.classList.toggle('active');
 
 })
+
+/*Mostrar frente de la tarjeta*/
+
+const frenteTarjeta = ()=> {
+    if(tarjeta.classList.contains('active')){
+        tarjeta.classList.remove('active')
+    }
+}
+
+/*Mostrar dorso de la tarjeta*/
+
+const dorsoTarjeta = () =>{
+    if(tarjeta.classList.contains('active')){
+        tarjeta.classList.remove('active')
+    }else{
+        tarjeta.classList.toggle('active')
+    }
+}
+
 
 /*Giro boton de apertura del formulario*/
 btnAbrirFormulario.addEventListener('click', () => {
@@ -26,7 +54,7 @@ btnAbrirFormulario.addEventListener('click', ()=>{
 /*Agrego dinamicamente todas las opciones de los options*/
 
 function agregarOpciones (){
-    let anioVencimiento = 2021;
+    let anioVencimiento = new Date().getFullYear();;
     for (i = 1; i <= 8; i++){
         anioVencimiento++;
         let option = document.createElement('option');
@@ -39,7 +67,7 @@ function agregarOpciones (){
 agregarOpciones()
 
 function agregarMeses(){
-    let meses = new Date().getFullYear();
+    let meses = 0
     for(i = 0;  i < 12; i++){
         meses++;
         let option = document.createElement('option');
@@ -75,23 +103,90 @@ inputNumero.addEventListener('keyup', (e) =>{
     /*Detectar nro de la tarjeta para poner la marca*/
 
     if( valorInput[0] == 4){
+        logoMarca.innerHTML ='';
         let img = document.createElement('img');
         img.src = "/images/visa.png";
         
         logoMarca.appendChild(img);
     }else if(valorInput[0] == 5){
+        logoMarca.innerHTML ='';
         let img = document.createElement('img');
         img.src = "/images/mastercard.png";
         logoMarca.appendChild(img);
     }else if (valorInput[0] == 3){
+        logoMarca.innerHTML ='';
         let img = document.createElement('img');
         img.src = "/images/amex.png";
+        img.className = "imgAmex";
         logoMarca.appendChild(img);
     }
+
+    //dar vuelta la tarjeta para que se vea el frente
+    frenteTarjeta()
     
 })
 
 
+inputNombre.addEventListener('keyup', (e) =>{
+    let valorInput = e.target.value;
+
+	inputNombre.value = valorInput
+    .replace(/[0-9]/g, '');
+	nombreTC.textContent = valorInput;
+	firma.textContent = valorInput;
+
+	if((valorInput == '') && (valorInput[0] = " ")){
+		nombreTC.textContent = 'Leonel Messi';
+	}
 
 
+    frenteTarjeta();
 
+})
+
+/*Mes del vencimiento*/
+
+inputMes.addEventListener('change', (e) =>{
+    let valorInput = e.target.value;
+    
+    inputMes.value = valorInput;
+
+    if(valorInput < 10){
+    mes.textContent = `0${valorInput}`}
+    else{mes.textContent = valorInput}
+
+    frenteTarjeta()
+})
+
+inputYear.addEventListener('change',(e)=>{
+    let valorInput = e.target.value;
+
+    inputYear.value = valorInput;
+
+    year.textContent = valorInput - 2000;
+    
+    frenteTarjeta()
+
+})
+
+/*Codigo de seguridad*/
+
+inputCVV.addEventListener('keyup',()=>{
+
+    /**/
+    if(!tarjeta.classList.contains('active')){
+        tarjeta.classList.toggle('active')
+    }
+
+    inputCVV.value = inputCVV.value
+    .replace(/\s/g, '')
+	// Eliminar las letras
+	.replace(/\D/g, '')
+	// Ponemos espacio cada cuatro numeros
+	.replace(/([0-9]{4})/g, '$1 ')
+	// Elimina el ultimo espaciado
+	.trim();
+
+    cvv.textContent = inputCVV.value
+
+})
