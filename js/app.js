@@ -30,13 +30,12 @@ function mostrarProductos (){
             const div = document.createElement('div');
             div.className ='producto';
             div.innerHTML = `
-            <div class="card mt-5" style="width: 18rem">
+            <div class="card mt-5 cardProducto" ">
                 <img src="${item.img}" class="card-img-top" alt="Import Giper" />
                 <div class="card-body">
-                <h4>${item.nombre}</h4>
-                <span class="card-text">
-                    $${item.precio}
-                </span>
+                    <h4 class="nombreProducto">${item.nombre}</h4>
+                    <span class="card-text">$${item.precio}</span>
+                </div>    
                 <button id="agregar${item.id}"class="btn btn-primary btnAgregar">Agregar al carrito</button>
             </div>`
     
@@ -98,12 +97,12 @@ function mostrarCarrito(productoAgregar){
         <div class="modal-footer modalProductos">
             <div class="productoCarrito">${productoAgregar.nombre}</div>
             <div id="und${productoAgregar.id}" class="productoCarrito unidades">${productoAgregar.cantidad}</div>
-            <div class="productoCarrito">$${productoAgregar.precio}</div>
-            <div class="productoCarrito"></div>
-            <button id="eliminar${productoAgregar.id}" class="productoCarrito"><ion-icon name="trash-outline"></ion-icon></button>
+            <div class="productoCarrito precioCarrito">$${productoAgregar.precio}</div>
+            <button id="eliminar${productoAgregar.id}" class="productoCarrito btnEliminar"><ion-icon name="trash-outline"></ion-icon></button>
             
         </div>
-            `
+        `
+        
 
     contenedorCarrito.appendChild(div);
     
@@ -136,6 +135,7 @@ function mostrarCarrito(productoAgregar){
 function actualizarCarrito(){
     contadorCarrito.innerText = carritoDeCompras.reduce((acc,el) => acc + el.cantidad, 0);
     precioTotal.innerText = "Precio total: $" + carritoDeCompras.reduce((acc,el) => acc + (el.precio * el.cantidad), 0);
+    
 
 }
 

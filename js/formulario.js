@@ -127,6 +127,8 @@ inputNumero.addEventListener('keyup', (e) =>{
 })
 
 
+nombreTC.innerText = "Lionel Messi"
+
 inputNombre.addEventListener('keyup', (e) =>{
     let valorInput = e.target.value;
 
@@ -135,7 +137,7 @@ inputNombre.addEventListener('keyup', (e) =>{
 	nombreTC.textContent = valorInput;
 	firma.textContent = valorInput;
 
-	if((valorInput == '') && (valorInput[0] = " ")){
+	if(valorInput == '') {
 		nombreTC.textContent = 'Leonel Messi';
 	}
 
