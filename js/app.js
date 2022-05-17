@@ -6,7 +6,8 @@ const contenedorCarrito = document.getElementById('contenedorCarrito');
 
 const contadorCarrito = document.getElementById('contadorCarrito');
 const precioTotal = document.getElementById('precioTotal');
-const btnFinalizar = document.getElementById('btnFinalizar')
+const btnFinalizar = document.getElementById('btnFinalizar');
+
 
 
 //Mostrar los productos por la funcion, recorriendo el array stockProductos
@@ -21,11 +22,15 @@ fetch('js/stockProductos.json')
         
 mostrarProductos();
 
+
+//funcion para mostrar los productos
+
 function mostrarProductos (){
-    
+    //fetch al archivo json con el stock
     fetch('js/stockProductos.json')
         .then((resp) => resp.json ())
         .then((data) => {
+            //imprimo en el DOM los productos del array del JSON
             data.forEach(item => {
             const div = document.createElement('div');
             div.className ='producto';
@@ -40,7 +45,9 @@ function mostrarProductos (){
             </div>`
     
             containerProductos.appendChild(div);
-    
+            
+            
+                //Enviar ID a funcion para agregar al carrito
             let btnAgregar = document.getElementById(`agregar${item.id}`)
             btnAgregar.addEventListener('click',()=>{
                 agregarAlCarrito(item.id);
@@ -63,7 +70,7 @@ function mostrarProductos (){
 function agregarAlCarrito(id){
 
     let yaEsta = carritoDeCompras.find(item => item.id == id);
-
+    //sumar cantidades
     if(yaEsta){
         yaEsta.cantidad++;
         document.getElementById(`und${yaEsta.id}`).innerHTML = `<div id="und${yaEsta.id}" class="productoCarrito unidades">${yaEsta.cantidad}</div>`;
@@ -73,13 +80,13 @@ function agregarAlCarrito(id){
         
         let productoAgregar = stockProductos.find(el => el.id == id);
 
-    productoAgregar.cantidad = 1;
+        productoAgregar.cantidad = 1;
 
-    carritoDeCompras.push(productoAgregar);
+        carritoDeCompras.push(productoAgregar);
 
-    actualizarCarrito();
+        actualizarCarrito();
 
-    mostrarCarrito(productoAgregar);
+        mostrarCarrito(productoAgregar);
     }
 
     localStorage.setItem('carrito', JSON.stringify(carritoDeCompras));
@@ -88,6 +95,8 @@ function agregarAlCarrito(id){
     
 
 }
+
+//Agregar al DOM del carrito los productos
 
 function mostrarCarrito(productoAgregar){
     
@@ -110,19 +119,43 @@ function mostrarCarrito(productoAgregar){
     let btnEliminar = document.getElementById(`eliminar${productoAgregar.id}`)
 
     
-
+    //Eliminar productos
     
     btnEliminar.addEventListener('click',()=>{
+
+
         if(productoAgregar.cantidad == 1){
+
         btnEliminar.parentElement.remove();
         carritoDeCompras = carritoDeCompras.filter(item=>item.id != productoAgregar.id);
         actualizarCarrito();
         localStorage.setItem('carrito', JSON.stringify(carritoDeCompras));
+
+        Toastify({
+            text: "Producto Eliminado",
+            className: "info",
+            position:"left",
+            gravity:"bottom",
+            style: {
+              background: "red",
+            }
+          }).showToast();
+
         }else{
             productoAgregar.cantidad--;
         document.getElementById(`und${productoAgregar.id}`).innerHTML = `<div id="und${productoAgregar.id}" class="productoCarrito unidades">${productoAgregar.cantidad}</div>`;
         actualizarCarrito();
         localStorage.setItem('carrito', JSON.stringify(carritoDeCompras));
+
+        Toastify({
+            text: "Producto eliminado",
+            className: "info",
+            position:"left",
+            gravity:"bottom",
+            style: {
+              background: "red",
+            }
+          }).showToast();
         }
 
 
@@ -132,12 +165,16 @@ function mostrarCarrito(productoAgregar){
     
 }
 
+//Actualizar carrito
+
 function actualizarCarrito(){
     contadorCarrito.innerText = carritoDeCompras.reduce((acc,el) => acc + el.cantidad, 0);
     precioTotal.innerText = "Precio total: $" + carritoDeCompras.reduce((acc,el) => acc + (el.precio * el.cantidad), 0);
     
 
 }
+
+//Recuperar carrito del local storage
 
 function recuperar() {
  let recuperarLS = JSON.parse(localStorage.getItem('carrito'))
@@ -154,6 +191,21 @@ function recuperar() {
 
 }
 
-
 recuperar()
 
+
+btnFinalizar.addEventListener('click',()=>{
+    if(carritoDeCompras.length >= 1){
+        btnFinalizar.onclick = location.href='formulario.html'
+    }else{
+        Toastify({
+            text: "Carrito vacio",
+            className: "info",
+            position:"left",
+            gravity:"bottom",
+            style: {
+              background: "red",
+            }
+          }).showToast();
+    }
+})

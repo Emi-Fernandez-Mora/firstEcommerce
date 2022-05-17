@@ -1,3 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Liu+Jian+Mao+Cao&family=Oswald:wght@200;400&family=Poppins:wght@100&family=Roboto&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@600&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@600&display=swap');
+
+*{
+    scroll-behavior: smooth;
+}
+
+body{
+    height: auto;
+    
+}
+
+.divFormDatos{
+    width: 80%;
+    max-width: 900px;
+    
+    margin-top: 10vh;
+    background-color: #ffffff91;
+    border-radius: 10px;
+}
+
+.pasosCompra{
+    margin-top: 5%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+   
+    
+}
+
+.numeroPaso{
+    background-color: black;
+    width: 7rem;
+    height: 120px;
+    border-radius: 50%;
+    color: white;
+    text-align: center;
+    font-size: 4.5rem;
+}
+.paso1{
+    height: 90vh;
+}
+.paso{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    padding-top: 1%;
+    font-size: 4rem;
+    color: #000;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .tarjetas{
     display: none;
 }

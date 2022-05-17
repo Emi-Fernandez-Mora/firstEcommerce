@@ -15,7 +15,8 @@ const inputMes = document.querySelector('#selectMes');
 const year = document.querySelector('#year');
 const inputYear = document.querySelector('#selectYear')
 const cvv = document.querySelector('.cvv');
-const inputCVV = document.querySelector('#inputCVV')
+const inputCVV = document.querySelector('#inputCVV');
+const btnFinalizarCompra = document.querySelector('#btnFinalizarCompra');
 
 /*Roto la tarjeta*/
 tarjeta.addEventListener('click', ()=>{
@@ -84,7 +85,9 @@ inputNumero.addEventListener('keyup', (e) =>{
     let valorInput = e.target.value;
 
 	inputNumero.value = valorInput
-	// Eliminamos espacios en blanco
+    
+
+    // Eliminamos espacios en blanco
 	.replace(/\s/g, '')
 	// Eliminar las letras
 	.replace(/\D/g, '')
@@ -92,7 +95,7 @@ inputNumero.addEventListener('keyup', (e) =>{
 	.replace(/([0-9]{4})/g, '$1 ')
 	// Elimina el ultimo espaciado
 	.trim();
-
+    
 	nroTC.textContent = valorInput;
 
 	if(valorInput == ''){
@@ -120,11 +123,15 @@ inputNumero.addEventListener('keyup', (e) =>{
         img.className = "imgAmex";
         logoMarca.appendChild(img);
     }
-
+    
     //dar vuelta la tarjeta para que se vea el frente
     frenteTarjeta()
     
 })
+
+
+
+
 
 
 nombreTC.innerText = "Lionel Messi"
@@ -138,7 +145,7 @@ inputNombre.addEventListener('keyup', (e) =>{
 	firma.textContent = valorInput;
 
 	if(valorInput == '') {
-		nombreTC.textContent = 'Leonel Messi';
+		nombreTC.textContent = 'Lionel Messi';
 	}
 
 
@@ -192,3 +199,58 @@ inputCVV.addEventListener('keyup',()=>{
     cvv.textContent = inputCVV.value
 
 })
+
+//Boton finalizar compra lanza alerta que ya se realizó el pedido. 
+
+function finalizarCompra (){
+    btnFinalizarCompra.addEventListener('click',(e)=>{
+        e.preventDefault(e);
+        numero
+        nombre
+        mes
+        year
+        cvv
+        //Validacion de los inputs
+        if(inputNumero.value == 0 ||
+            formulario.nombre.value == 0 ||
+            formulario.mes.value == 0 ||
+            formulario.year.value == 0 ||
+            formulario.cvv.value == 0 ){
+                Toastify({
+                    text: "Por favor completa todos los campos",
+                    className: "info",
+                    position:"left",
+                    gravity:"bottom",
+                    style: {
+                      background: "red",
+                    }
+                  }).showToast();
+            }else{
+                //Alerta para confirmar la compra
+                Swal.fire({
+                title: 'Compra confirmada',
+                text: 'En 5 días te va a llegar tu producto',
+                imageUrl: 'https://c.tenor.com/9eFnSCwAiXQAAAAC/gracias-vuelvan-prontos.gif',
+                imageWidth:600,
+                imageHeight: 300,
+                imageAlt: 'Gracias vuelvas prontos',
+                }).then(()=>{
+                    location.href='index.html'
+                })
+                //Bucle para vaciar el carrito y local storage
+                for(let i = carritoDeCompras.length; i > 0; i--){
+                    carritoDeCompras.pop();
+                    actualizarCarrito();
+                    localStorage.clear();
+                }
+                
+
+                
+            
+            };
+        
+        
+
+    })
+}
+finalizarCompra();
