@@ -6,4 +6,5 @@
 {"id":6,"nombre":"Ruanas","precio":950,"img":"/images/ruanas.jpg"},
 {"id":7,"nombre":"Sorbete reutilizable","precio":250,"img":"/images/sorbete.webp"},
 {"id":8,"nombre":"Tender para ropa","precio":5225,"img":"/images/tender.webp"},
-{"id":9,"nombre":"Pack de perchas","precio":1330,"img":"/images/perchas.webp"}]
+{"id":9,"nombre":"Pack de perchas","precio":1330,"img":"/images/perchas.webp"},
+{"id":10,"nombre":"Silla Gamer","precio":34990,"img":"/images/silla2.webp"}]

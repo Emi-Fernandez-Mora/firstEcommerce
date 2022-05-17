@@ -7,6 +7,7 @@ const contenedorCarrito = document.getElementById('contenedorCarrito');
 const contadorCarrito = document.getElementById('contadorCarrito');
 const precioTotal = document.getElementById('precioTotal');
 const btnFinalizar = document.getElementById('btnFinalizar');
+const btnEliminarCarrito = document.querySelector('#btnEliminarCarrito');
 
 
 
@@ -207,5 +208,30 @@ btnFinalizar.addEventListener('click',()=>{
               background: "red",
             }
           }).showToast();
+    }
+})
+
+
+//Boton para eliminar todo el carrito
+btnEliminarCarrito.addEventListener('click', ()=>{
+    
+    if(carritoDeCompras.length == 0){
+        Toastify({
+            text: "Carrito vacio",
+            className: "info",
+            position:"left",
+            gravity:"bottom",
+            style: {
+              background: "red",
+            }
+          }).showToast();
+    }else{
+        for(let i = carritoDeCompras.length; i > 0; i--){
+            carritoDeCompras.pop();
+            actualizarCarrito();
+            localStorage.clear();
+            btnEliminarCarrito.onclick = location.href='index.html'
+            
+        }
     }
 })
