@@ -172,7 +172,7 @@ function actualizarCarrito(){
     contadorCarrito.innerText = carritoDeCompras.reduce((acc,el) => acc + el.cantidad, 0);
     precioTotal.innerText = "Precio total: $" + carritoDeCompras.reduce((acc,el) => acc + (el.precio * el.cantidad), 0);
     
-
+    
 }
 
 //Recuperar carrito del local storage
@@ -214,6 +214,8 @@ btnFinalizar.addEventListener('click',()=>{
 
 //Boton para eliminar todo el carrito
 btnEliminarCarrito.addEventListener('click', ()=>{
+
+
     
     if(carritoDeCompras.length == 0){
         Toastify({
@@ -226,12 +228,21 @@ btnEliminarCarrito.addEventListener('click', ()=>{
             }
           }).showToast();
     }else{
-        for(let i = carritoDeCompras.length; i > 0; i--){
-            carritoDeCompras.pop();
-            actualizarCarrito();
-            localStorage.clear();
-            btnEliminarCarrito.onclick = location.href='index.html'
-            
-        }
+        Swal.fire({
+            title: '¿Deseas vaciar tu carrito?',
+            text: 'Se eliminaran todos los productos agregados',
+            icon:'question',
+            }).then(()=>{
+                for(let i = carritoDeCompras.length; i > 0; i--){
+                    carritoDeCompras.pop();
+                    actualizarCarrito();
+                    localStorage.clear();
+                    btnEliminarCarrito.onclick = location.href='index.html'
+                
+                }
+                
+            })
+        
     }
 })
+

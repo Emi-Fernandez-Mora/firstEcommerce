@@ -19,6 +19,10 @@ body{
 .card{
     margin: auto;
 }
+
+.buscador{
+    font-size: 30px;
+}
 header{
     display: inline-flex;
     width: 100%;
@@ -241,7 +245,7 @@ header{
 }
 
 
-/*carrousel*/
+
 
 .banner{
     background-image: linear-gradient(to right, rgba(39, 38, 38, 0.404), rgba(0, 0, 0, 0.445)),url('/images/banner.jpeg');
@@ -252,10 +256,43 @@ header{
     box-shadow: -1px 14px 5px 0px rgba(0,0,0,0.75);
     -webkit-box-shadow: -1px 14px 5px 0px rgba(0,0,0,0.75);
     -moz-box-shadow: -1px 14px 5px 0px rgba(0,0,0,0.75);
+    display: flex;
+    justify-content:center;
     
 }
 
+/*Barra buscadora*/
 
+.barraBuscador{
+    height: 70px;
+    width: 80%;
+    clip-path: polygon(0 0, 100% 0%, 100% 0, 0 0);
+    transition: clip-path .3s ease-out;
+    
+}
+
+.barraBuscador.active{
+    clip-path: polygon(0 0, 100% 0%, 100% 100%, 0 100%);
+    
+}
+#boton-buscar{
+    background: none;
+    border: none;
+    border-width: 0;
+    margin-right: 5px;
+}
+
+#filtroSelect{
+    margin:25px auto 0 auto;
+    width: 30%;
+    font-size: 20px;
+    background-color: #ffffff91;
+    border: black;
+}
+.option{
+    background-color: rgba(252, 252, 252, 0.055);
+    
+}
 
 
 
