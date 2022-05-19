@@ -1,5 +1,6 @@
-const tarjeta = document.querySelector('#tarjeta');
+//Declaracion de todos los elementos del DOM que voy a usar
 
+const tarjeta = document.querySelector('#tarjeta');
 const btnAbrirFormulario = document.querySelector('#btn-abrir-formulario');
 const formulario = document.querySelector('#formulario-tarjeta');
 const selectYear = document.querySelector('#selectYear');
@@ -18,13 +19,13 @@ const cvv = document.querySelector('.cvv');
 const inputCVV = document.querySelector('#inputCVV');
 const btnFinalizarCompra = document.querySelector('#btnFinalizarCompra');
 
-/*Roto la tarjeta*/
+//Roto la tarjeta
 tarjeta.addEventListener('click', ()=>{
     tarjeta.classList.toggle('active');
 
 })
 
-/*Mostrar frente de la tarjeta*/
+//Mostrar frente de la tarjeta
 
 const frenteTarjeta = ()=> {
     if(tarjeta.classList.contains('active')){
@@ -32,7 +33,7 @@ const frenteTarjeta = ()=> {
     }
 }
 
-/*Mostrar dorso de la tarjeta*/
+//Mostrar dorso de la tarjeta
 
 const dorsoTarjeta = () =>{
     if(tarjeta.classList.contains('active')){
@@ -43,16 +44,16 @@ const dorsoTarjeta = () =>{
 }
 
 
-/*Giro boton de apertura del formulario*/
+//Giro boton de apertura del formulario
 btnAbrirFormulario.addEventListener('click', () => {
 	btnAbrirFormulario.classList.toggle('active');
 });
-/*Despliego el formulario*/
+//Despliego el formulario
 btnAbrirFormulario.addEventListener('click', ()=>{
     formulario.classList.toggle('active')
 });
 
-/*Agrego dinamicamente todas las opciones de los options*/
+//Agrego dinamicamente todas las opciones de los options
 
 function agregarOpciones (){
     let anioVencimiento = new Date().getFullYear();;
@@ -79,7 +80,7 @@ function agregarMeses(){
 }
 agregarMeses()
 
-/*Values a los imputs y validaciones*/
+//Values a los inputs y validaciones
 
 inputNumero.addEventListener('keyup', (e) =>{
     let valorInput = e.target.value;
@@ -88,22 +89,34 @@ inputNumero.addEventListener('keyup', (e) =>{
     
 
     // Eliminamos espacios en blanco
+
 	.replace(/\s/g, '')
+
 	// Eliminar las letras
+
 	.replace(/\D/g, '')
+
 	// Ponemos espacio cada cuatro numeros
+
 	.replace(/([0-9]{4})/g, '$1 ')
+
+
 	// Elimina el ultimo espaciado
+
 	.trim();
     
 	nroTC.textContent = valorInput;
+
+
+    //Valor por defecto de la tarjeta
 
 	if(valorInput == ''){
 		nroTC.textContent = '#### #### #### ####';
 
 		logoMarca.innerHTML = '';
 	}
-    /*Detectar nro de la tarjeta para poner la marca*/
+
+    //Detectar nro de la tarjeta para poner la marca
 
     if( valorInput[0] == 4){
         logoMarca.innerHTML ='';
@@ -129,10 +142,7 @@ inputNumero.addEventListener('keyup', (e) =>{
     
 })
 
-
-
-
-
+//Valor por defecto de la tarjeta
 
 nombreTC.innerText = "Lionel Messi"
 
@@ -153,7 +163,7 @@ inputNombre.addEventListener('keyup', (e) =>{
 
 })
 
-/*Mes del vencimiento*/
+//Mes del vencimiento
 
 inputMes.addEventListener('change', (e) =>{
     let valorInput = e.target.value;
@@ -178,7 +188,7 @@ inputYear.addEventListener('change',(e)=>{
 
 })
 
-/*Codigo de seguridad*/
+//Codigo de seguridad*
 
 inputCVV.addEventListener('keyup',()=>{
 

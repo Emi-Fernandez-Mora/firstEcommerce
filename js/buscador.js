@@ -3,10 +3,13 @@ const barraBuscador = document.querySelector('#barraBuscador');
 const botonLupa = document.querySelector('#boton-buscar');
 const botonBuscar = document.querySelector('#botonBuscar');
 
+//Animacion para que despliegue la barra de busqueda
+
 botonLupa.addEventListener('click', ()=>{
     barraBuscador.classList.toggle('active')
     
 })
+
 //Muestra los productos simepre que no los busquen
 if(inputBuscador.value == ""){
     mostrarProductos();
@@ -15,20 +18,25 @@ if(inputBuscador.value == ""){
 }
 
 //Funcion para buscar
+
 const filtroBusqueda = ()=>{
     containerProductos.innerHTML = ``;
 
     const valorInput = inputBuscador.value.toLowerCase();
 
    //fetch al archivo json con el stock
+
    fetch('js/stockProductos.json')
    .then((resp) => resp.json ())
    .then((data) => {
+
        //imprimo en el DOM los productos del array del JSON
+
        data.forEach(item => {
-        
+       
        let nombre = item.nombre.toLowerCase(); 
 
+       //condicion para que busque coincidencias en el stockProductos y lo muestre en el DOM segun la busqueda
        if(nombre.indexOf(valorInput) !== -1){
             containerProductos.innerHTML += `
             <div class="card mt-5 cardProducto" ">
@@ -72,7 +80,7 @@ const filtroBusqueda = ()=>{
 
 })}
 
-
+//Eventos para buscar los productos, uno para el click del button, otro para busqueda en el momento
 botonBuscar.addEventListener('click', filtroBusqueda);
 inputBuscador.addEventListener('keyup', filtroBusqueda);
 

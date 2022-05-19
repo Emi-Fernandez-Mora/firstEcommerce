@@ -3,11 +3,14 @@ const formularioDatos = document.querySelector('#formularioDatos')
 
 
 //Funcion para validar que los inputs tengan contenido
+
 function confirmarDatos () {
    btnConfirmarDatos.addEventListener('click', (e)=>{
         //Anulo submit
-       e.preventDefault(e);
-        //valido inputs
+        e.preventDefault(e);
+        
+        //valido inputs (seguramente haya una manera mas facil, busque mucho y no encontre algo practico, escucho sugerencias)
+
         if(formularioDatos.calle.value==0 ||
              formularioDatos.altura.value == 0 ||
              formularioDatos.piso.value==0 ||
@@ -30,9 +33,13 @@ function confirmarDatos () {
                     }
                   }).showToast();
         }else{
+          
             //desplazo al siguiente formulario
 
-            btnConfirmarDatos.onclick = location.href='#divSegundoPaso'
+            btnConfirmarDatos.onclick = location.href='#divSegundoPaso';
+            document.querySelector('#divSegundoPaso').classList.toggle('animate__backInUp');
+            document.querySelector('#divSegundoPaso').classList.toggle('visible');
+            
         }
     })
 

@@ -33,6 +33,10 @@ header{
     
     
 }
+.nav-link{
+    font-size: 20px;
+    font-family: 'Work Sans', sans-serif;
+}
 .divBtnCarrito{
     background-color:  #1a1010;
     padding-top: 1%;
@@ -63,7 +67,37 @@ header{
 }
 .tituloFooter{
     margin: auto;
+    font-size: 2rem;
+    font-family:'Courier New', Courier, monospace
 }
+.location{
+    font-size: 25px;
+    margin: 7px 7px;
+}
+.spanFooter{
+    font-size: 20px;
+    margin: 5px;
+}
+.spanFooter2{
+    font-size: 18px;
+    margin: 5px 2px;
+}
+.insta{
+    font-size: 50px;
+    margin: 40px 0px 0px 60px;
+} 
+
+.containerFooter{
+    display: grid;
+    grid-template-columns: auto auto 25%;
+    width: 80%;
+}
+.pMision{
+    font-size: 18px;
+    padding-right: 20px;
+    margin-top: 20px;
+}
+
 .main{
     min-height: 100vh;
 }
@@ -135,6 +169,7 @@ header{
 
 #contadorCarrito{
     font-size: 0.8rem;
+    
 }
 
 .divToggleNavigation{
@@ -166,12 +201,18 @@ header{
 .cardProducto{
     height: 550px;
     width: 330px;
-    margin-right: 25px;
+    margin-right: 50px;
     background-color: #ffffff;
-    box-shadow: 8px 12px 10px -3px rgba(0,0,0,0.9);
-    -webkit-box-shadow: 8px 12px 10px -3px rgba(0,0,0,0.9);
-    -moz-box-shadow: 8px 12px 10px -3px rgba(0,0,0,0.9);
+    box-shadow: 1px 7px 23px 0px rgba(0,0,0,0.75);
+-webkit-box-shadow: 1px 7px 23px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 1px 7px 23px 0px rgba(0,0,0,0.75);
 
+}
+.cardProducto:hover{
+    box-shadow: 1px 17px 20px 0px rgba(0,0,0,0.75);
+-webkit-box-shadow: 1px 17px 20px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 1px 17px 20px 0px rgba(0,0,0,0.75);
+transform: translateY(-0.8%);
 }
 
 .divCartaNombre{
@@ -185,6 +226,11 @@ header{
 .btnAgregar{
     margin: 2px;
     background-color: #ff7800;
+    border:none
+}
+.btnAgregar:hover{
+    margin: 2px;
+    background-color: #c45e05;
     border:none
 }
 
@@ -265,11 +311,21 @@ header{
 /*Barra buscadora*/
 
 .barraBuscador{
-    height: 70px;
+    height: 50px;
     width: 80%;
     clip-path: polygon(0 0, 100% 0%, 100% 0, 0 0);
     transition: clip-path .3s ease-out;
     
+}
+.bntBuscador{
+    background-color: #1a1010;
+    border: none;
+    margin-right: 2px;
+}
+.arrow{
+    color: white;
+    border: none;
+    font-size: 30px;
 }
 
 .barraBuscador.active{
@@ -294,6 +350,7 @@ header{
     background-color: rgba(252, 252, 252, 0.055);
     
 }
+
 
 
 

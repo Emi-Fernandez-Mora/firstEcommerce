@@ -1,6 +1,6 @@
 let carritoDeCompras = [];
 
-
+//Declaro constantes con elementos del DOM para manejar mas facil luego
 const containerProductos = document.getElementById('containerProductos');
 const contenedorCarrito = document.getElementById('contenedorCarrito');
 
@@ -11,29 +11,35 @@ const btnEliminarCarrito = document.querySelector('#btnEliminarCarrito');
 
 
 
-//Mostrar los productos por la funcion, recorriendo el array stockProductos
+
 
 let stockProductos =[];
 
+//Tuve inconvenientes para utilizar el fetch guardado en la variable stockProductos. 
+
 fetch('js/stockProductos.json')
-        .then((resp) => resp.json ())
-        .then((data) => data.forEach(e=>{
+    .then((resp) => resp.json ())
+    .then((data) => data.forEach(e=>{
             stockProductos.push(e)
-        }));
+            }
+    )   );
 
-
-        
+       
 
 
 
 //funcion para mostrar los productos
 
 function mostrarProductos (){
+
     //fetch al archivo json con el stock
+
     fetch('js/stockProductos.json')
         .then((resp) => resp.json ())
         .then((data) => {
+
             //imprimo en el DOM los productos del array del JSON
+
             data.forEach(item => {
             const div = document.createElement('div');
             div.className ='producto';
@@ -50,7 +56,8 @@ function mostrarProductos (){
             containerProductos.appendChild(div);
             
             
-                //Enviar ID a funcion para agregar al carrito
+            //Enviar ID a funcion para agregar al carrito
+
             let btnAgregar = document.getElementById(`agregar${item.id}`)
             btnAgregar.addEventListener('click',()=>{
                 agregarAlCarrito(item.id);
@@ -73,7 +80,9 @@ function mostrarProductos (){
 function agregarAlCarrito(id){
 
     let yaEsta = carritoDeCompras.find(item => item.id == id);
+
     //sumar cantidades
+
     if(yaEsta){
         yaEsta.cantidad++;
         document.getElementById(`und${yaEsta.id}`).innerHTML = `<div id="und${yaEsta.id}" class="productoCarrito unidades">${yaEsta.cantidad}</div>`;
@@ -118,7 +127,8 @@ function mostrarCarrito(productoAgregar){
 
     contenedorCarrito.appendChild(div);
     
-    
+    //Agregar id identificatorio a cada boton.
+
     let btnEliminar = document.getElementById(`eliminar${productoAgregar.id}`)
 
     
@@ -129,10 +139,14 @@ function mostrarCarrito(productoAgregar){
 
         if(productoAgregar.cantidad == 1){
 
+            //Condicion para eliminar todo el div
+
         btnEliminar.parentElement.remove();
         carritoDeCompras = carritoDeCompras.filter(item=>item.id != productoAgregar.id);
         actualizarCarrito();
         localStorage.setItem('carrito', JSON.stringify(carritoDeCompras));
+
+        //Alerta
 
         Toastify({
             text: "Producto Eliminado",
@@ -145,20 +159,25 @@ function mostrarCarrito(productoAgregar){
           }).showToast();
 
         }else{
-            productoAgregar.cantidad--;
-        document.getElementById(`und${productoAgregar.id}`).innerHTML = `<div id="und${productoAgregar.id}" class="productoCarrito unidades">${productoAgregar.cantidad}</div>`;
-        actualizarCarrito();
-        localStorage.setItem('carrito', JSON.stringify(carritoDeCompras));
 
-        Toastify({
-            text: "Producto eliminado",
-            className: "info",
-            position:"left",
-            gravity:"bottom",
-            style: {
-              background: "red",
-            }
-          }).showToast();
+            //Condicion para bajar la cantidad 
+
+            productoAgregar.cantidad--;
+            document.getElementById(`und${productoAgregar.id}`).innerHTML = `<div id="und${productoAgregar.id}" class="productoCarrito unidades">${productoAgregar.cantidad}</div>`;
+            actualizarCarrito();
+            localStorage.setItem('carrito', JSON.stringify(carritoDeCompras));
+
+            //Alerta   
+
+            Toastify({
+                text: "Producto eliminado",
+                className: "info",
+                position:"left",
+                gravity:"bottom",
+                style: {
+                background: "red",
+                }
+            }).showToast();
         }
 
 
@@ -197,6 +216,7 @@ function recuperar() {
 recuperar()
 
 
+//Verifica si el carrito esta vacio para pasar a los formularios de envio y pago
 btnFinalizar.addEventListener('click',()=>{
     if(carritoDeCompras.length >= 1){
         btnFinalizar.onclick = location.href='formulario.html'
@@ -215,6 +235,7 @@ btnFinalizar.addEventListener('click',()=>{
 
 
 //Boton para eliminar todo el carrito
+
 btnEliminarCarrito.addEventListener('click', ()=>{
 
 
@@ -248,3 +269,7 @@ btnEliminarCarrito.addEventListener('click', ()=>{
     }
 })
 
+//Intente utilizar un operador ternario para agregar la class visible que utilizo para el segundo form, y que aparezca cuando 
+//el carritoDeCompras tenga un length mayor a 0
+
+/* carritoDeCompras.length < 0 ? contadorCarrito.classList.toggle('visible'): console.log('tiene contenido'); */

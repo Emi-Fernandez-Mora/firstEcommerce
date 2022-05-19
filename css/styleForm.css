@@ -4,9 +4,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@600&display=swap');
 
-*{
-    scroll-behavior: smooth;
-}
+
 
 body{
     height: auto;
@@ -17,50 +15,74 @@ body{
     width: 80%;
     max-width: 900px;
     
-    margin-top: 10vh;
-    background-color: #ffffff91;
+    margin-top: 3%;
+    background-color: #e9e4e491;
     border-radius: 10px;
+    border-style:initial;
+    box-shadow: 8px 9px 11px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 8px 9px 11px 0px rgba(0,0,0,0.75);
 }
 
 .pasosCompra{
     margin-top: 5%;
-    width: 100%;
+    padding-top: 6%;
+    width: 80%;
     display: flex;
     justify-content: center;
-   
     
 }
 
-.numeroPaso{
-    background-color: black;
-    width: 7rem;
-    height: 120px;
-    border-radius: 50%;
-    color: white;
-    text-align: center;
-    font-size: 4.5rem;
-}
 .paso1{
-    height: 90vh;
+    height: 60vh;
+    margin: 5% auto;
+    width: 65%;
+    background-color: rgba(0, 0, 0, 0.197);
+    border-radius: 10px;
+    box-shadow: 14px 13px 19px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 14px 13px 19px 0px rgba(0,0,0,0.75);
+    border-style:initial;
+    
 }
-.paso{
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    padding-top: 1%;
-    font-size: 4rem;
-    color: #000;
+.tituloPaso{
+    font-size: 3rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+.subpaso{
+    display: inline-flex;
+    justify-content: center;
+    padding-top: 30px;    
+    
+}
+.nroPaso{
+    height: 80px;
+    width: 80px;
+    
+    border: solid black;
+    font-size: 50px;
+    color: rgb(9, 7, 7);
+    text-align: center;
+    border-radius: 50%;
+    
 }
 
-
-
-
-
-
-
-
-
-
-
-
+#divSegundoPaso{
+    height: 100vh;
+    margin: 5% auto;
+    width: 50%;
+    background-color: rgba(0, 0, 0, 0.197);
+    border-radius: 10px;
+    box-shadow: 14px 13px 19px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 14px 13px 19px 0px rgba(0,0,0,0.75);
+    visibility: hidden;
+    
+}
+.visible{
+    visibility: visible;
+}
+.tit2{
+    width: 80%;
+    text-align: center;
+}
 
 
 .tarjetas{
@@ -76,7 +98,6 @@ body{
     margin: auto;
     display: flex;
     flex-direction: column;
-    
     align-items: center;
 }
 
@@ -106,6 +127,7 @@ body{
 }
 
 /*Tarjeta delantera*/
+
 .tarjeta .delantera{
     width: 100%;
     background: url(../images/fondoTarjeta.webp);
@@ -337,5 +359,3 @@ img.imgAmex{
     max-height: 38px;
 
 }
-
-
