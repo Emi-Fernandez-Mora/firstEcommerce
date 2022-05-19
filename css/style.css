@@ -64,8 +64,9 @@ header{
 .tituloFooter{
     margin: auto;
 }
-
-
+.main{
+    min-height: 100vh;
+}
 
 .carousel-item{
     height: 100%;

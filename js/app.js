@@ -13,15 +13,17 @@ const btnEliminarCarrito = document.querySelector('#btnEliminarCarrito');
 
 //Mostrar los productos por la funcion, recorriendo el array stockProductos
 
-let stockProductos;
+let stockProductos =[];
 
 fetch('js/stockProductos.json')
         .then((resp) => resp.json ())
-        .then((data) => stockProductos = data);
+        .then((data) => data.forEach(e=>{
+            stockProductos.push(e)
+        }));
 
 
         
-mostrarProductos();
+
 
 
 //funcion para mostrar los productos
